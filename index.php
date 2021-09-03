@@ -1,15 +1,15 @@
 <?php
 
-$host = 'db';
-$user = 'root';
+$host = 'database';
+$username = 'root';
 $password = 'root';
 
-$conn = new mysqli($host, $user, $password);
+$connection = new mysqli($host, $username, $password);
 
-if($conn->connect_error){
-	die('Connection failed: ' . $conn->connect_error);
+if($connection->connect_error){
+	die("Connection failed: " . $connection->connect_error);
+} else {
+	echo "MySQL version: ",$connection->server_info;
 }
-
-printf("MySQL server version : %s\n", $conn -> server_info);
 
 ?>
