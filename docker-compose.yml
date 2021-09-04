@@ -23,5 +23,5 @@ services:
       - ./docker/db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: akashdeep
-      MYSQL_PASSWORD: akpass
+      MYSQL_USER: aman
+      MYSQL_PASSWORD: kiet123
