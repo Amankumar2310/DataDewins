@@ -1,8 +1,8 @@
 <?php
 
 $host = 'database';
-$username = 'root';
-$password = 'root';
+$username = 'aman';
+$password = 'kiet123';
 
 $connection = new mysqli($host, $username, $password);
 
