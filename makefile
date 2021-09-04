@@ -1,32 +1,40 @@
 all: up
 
 prepare: 
-	@echo "\n-----------------checking for depedencies------------------\n"
-	@sudo apt-get update
-	@sudo apt install -y docker.io
-	@sudo apt install -y docker-compose
+	@echo "************************Checking For Dependecies***************************"
+	
+#	@sudo apt-get update
+#	@sudo apt install -y docker.io
+#	@sudo apt install -y docker-compose
+#	@sudo systemctl enable --now docker
+	
+	@sudo pacman -Syu
+	@sudo pacman -Syu docker
+	@sudo pacman -Syu docker-compose
 	@sudo systemctl enable --now docker
 
+
 up: prepare
-	@echo "\n------------------starting your container------------------\n"
-	@#! /bin/bash
+	@echo "******************************Containers Starting**************************"
 	@if [ ! -d docker ]; then\
 		mkdir docker;\
 		if [ ! -d www ]; then\
 			cd docker ;\
-			mkdir db ;\
 			mkdir www && cd ../../ ;\
-		fi ;\
-	fi
+		fi;\
+	fi;
+
 	@sudo cp ./index.php ./docker/www/;
 	@sudo docker-compose up -d --build
-	@echo "\n------------------wating for 60 seconds--------------------\n"
-	@sleep 60
+	@echo "****************************Wait for 120 sec*******************************"
+	@sleep 120
+	@echo "****************************Write make teardown to remove the containers**************************"
 
 teardown: down
-	@echo "\n------------------removing your files----------------------\n"
+	@echo "****************************Removing Containers*************************"
+	@sudo docker-compose down
 	@sudo rm -rf ./docker
 
 down:
-	@echo "\n------------------stoping all services---------------------\n"
-	@sudo docker-compose down
+	@echo "****************************Stopping Containers**************************"
+	@sudo docker stop apache database
