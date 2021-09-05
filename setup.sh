@@ -1,5 +1,5 @@
-#!/bin/bash
 
+#!/bin/bash
 if [ "$1" == "--help" ]; then
     echo "Help for `basename $0`"
     exit 0
